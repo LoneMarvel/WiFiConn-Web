@@ -11,7 +11,8 @@ def index():
     del wlanList[0]
     passwdFrm = PasswdFrm()
     if passwdFrm.validate_on_submit():
-        print(f'Form Was Submitted {passwdFrm.wifiPasswd.data}')        
+        print(f'Form Was Submitted Wifi Net {passwdFrm.wifiName.data} And Password {passwdFrm.wifiPasswd.data}')
+        #subprocess.getoutput(f'nmcli dev wifi connect {passwdFrm.wifiName.data} password {passwdFrm.wifiPasswd.data}')        
 
     pageCont = {'title':'WiFi Connection', 'wlanList':wlanList, 'passwdFrm':passwdFrm}
     return render_template('layout.html', pageCont=pageCont)
