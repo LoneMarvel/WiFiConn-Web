@@ -1,0 +1,54 @@
+body {
+    width: 100%;
+}
+.rounded {
+    border-radius:.8rem!important;
+}
+h2 {
+    color: #4e4e4e;
+}
+h3 {
+    color: #4e4e4e;
+}
+h4 {
+    color: #4e4e4e;
+}
+.CardTitle {
+    font-weight: bold;
+    color: #4e4e4e;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.CardBody {
+    color: #4e4e4e;
+    padding-left: 30px;
+}
+.box-shadow--4dp {
+    box-shadow: 0 4px 5px 0 #6f6f6f;
+}
+.TextCenter{
+    padding-top: 10px;
+}
+.TextStr{
+    color: #dbdbdb;
+    font-size: 42px;
+    font-weight: bold;
+}
+.linkRef{
+    color: lightslategrey;
+    font-size: 14px;
+    font-weight: normal;
+}
+.linkRef:hover{
+    color: lightslategrey;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration-color: silver;
+    text-decoration: underline;
+}
+#PasswdIn{
+    position: relative;
+}
+.frmRounded {
+    border-radius:0.6rem!important;
+}

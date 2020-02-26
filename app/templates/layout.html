@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}" />
+  <title>{{pageCont.title}}</title>
+</head>
+<body>
+  <div class="jumbotron bgImgCenter">
+    <div class="TextCenter"><h2><center>WiFi Connection</center></h2></div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-lg-8">
+        <div class="card rounded box-shadow--4dp" style="width: 850px;">
+          <div class="card-title CardTitle">Display All Available WiFi Networks</div>
+          <div class="card-body CardBody"><div class="input-group-addon"></div>
+            <ul>
+              {% for wlanItem in pageCont.wlanList %}
+                <li id="passwd{{loop.index}}"><button class="btn btn-link linkRef" onclick="DoInput({{loop.index}})">{{ wlanItem }}</button></li>                                                                                                           
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>  
+
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>  
+  <script>
+    function DoInput(idNum){                          
+      var htmlElem = '<form method="post" id="PasswdFrm" role="form" class="inline" style="width:690px;">{{ pageCont.passwdFrm.csrf_token }}'+
+        '<div class="inline" id="PasswdIn'+idNum+'" style="width:680px;">Type WiFi Password:&nbsp;&nbsp;'+
+        '<input class="form-control-md frmRounded inline" type="password" id="InWifiPasswd" name="wifiPasswd" />&nbsp;'+
+        '<a href="" id="DispPasswd"><i class="fa fa-eye-slash inline" aria-hidden="true" id="IconPasswd"></i></a>&nbsp;&nbsp;'+
+        '<button type="submit" class="btn btn-primary btn-dark inline" id="ConnBtn">Connect</button>&nbsp;&nbsp;'+
+        '<button class="btn btn-secondary btn-dark inline" id="CloseBtn">Close</button></div></form>';
+      $('#passwd'+idNum).append(htmlElem);            
+      $('#CloseBtn').click(function(e){
+        e.preventDefault();
+        $('#PasswdIn'+idNum).empty();
+      });
+      $('#DispPasswd').click(function(e){        
+        e.preventDefault();
+        if($('#InWifiPasswd').attr('type') == 'text'){
+          $('#InWifiPasswd').attr('type', 'password');
+          $('#IconPasswd').addClass('fa-eye-slash');
+          $('#IconPasswd').removeClass('fa-eye');
+        }
+        else if($('#InWifiPasswd').attr('type') == 'password'){
+          $('#InWifiPasswd').attr('type', 'text');
+          $('#IconPasswd').addClass('fa-eye');
+          $('#IconPasswd').removeClass('fa-eye-slash');
+        }
+      });
+    }
+
+  </script>  
+</body>
+</html>
